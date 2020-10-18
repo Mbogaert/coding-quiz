@@ -1,14 +1,5 @@
 "use strict";
 
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and score
 
@@ -18,6 +9,7 @@ var startBtn = document.getElementById("start");
 var mainQuiz = document.querySelector("main");
 var presentQuestion = 0;
 var timeLeft = 90;
+var score = 0;
 // the answer choices as buttons
 var firstBtn = document.createElement("button");
 firstBtn.value = firstBtn.innerText;  // create the first answer button, set the value of the button to the text
@@ -28,6 +20,7 @@ thirdBtn.value = thirdBtn.innerText;
 var fourthBtn = document.createElement("button");
 fourthBtn.value = fourthBtn.innerText;
 
+// arrays
 var questionsArr = [
     {
         question: "QUESTION #1",
@@ -72,7 +65,7 @@ function timer() {
         if (timeLeft === 0) {
             timerEl.textContent = '';
             clearInterval(timeInterval);
-            // enterHighScore();
+            gameOver();
         }
     }, 1000);
 };
@@ -128,6 +121,7 @@ function checkAnswer() {
 
     // checks answer
     if (questionsArr[presentQuestion].correct === this.innerText) {
+        score = score + 1;
         presentQuestion = presentQuestion + 1; 
         startQuestions();
     }
@@ -138,18 +132,47 @@ function checkAnswer() {
     };
 };
 
+// function saveScore() {
+//     localStorage.setItem("score", JSON.stringify(score));
+// }
+
+// function loadScores() {
+//     score = localStorage.getItem("score");
+// }
+
 function gameOver() {
     // reset the page to have nothing on the main area
-    mainQuiz.innerHTML = "";
     timeLeft = 0;
+    mainQuiz.innerHTML = "";
 
     var endMessage = document.createElement("p");
     endMessage.innerText = "You have reached the end of the quiz.";
+    var playerScore = document.createElement("p");
+    playerScore.innerText = "Your score is " + score + ".";
+    var input = document.createElement("input");
+    input.id = "initials";
+    input.placeholder = "Initials here";
+    var form = document.createElement("form");
+
+    var enterScoreBtn = document.createElement("button");
+    enterScoreBtn.type = ("submit");
+    enterScoreBtn.id = "enterScore";
+    enterScoreBtn.innerText = "Submit Score";
 
     mainQuiz.appendChild(endMessage);
+    mainQuiz.appendChild(playerScore);
+    mainQuiz.appendChild(form);
+    form.appendChild(input);
+    mainQuiz.appendChild(enterScoreBtn);
+
+    enterScoreBtn.addEventListener("click", function (event) {
+
+        var initials = document.querySelector("#initials").value;
+
+        localStorage.setItem("score", score);
+        localStorage.setItem("initials", initials);
+        console.log(initials, score);
+    });
 };
-
-// function enterHighScore() {}
-
 
 startBtn.addEventListener("click", startQuiz);
