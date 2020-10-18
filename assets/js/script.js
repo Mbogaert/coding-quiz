@@ -1,3 +1,5 @@
+"use strict";
+
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
@@ -14,8 +16,18 @@
 var timerEl = document.getElementById("timer");
 var startBtn = document.getElementById("start");
 var mainQuiz = document.querySelector("main");
+var presentQuestion = 0;
+var timeLeft = 90;
+// the answer choices as buttons
+var firstBtn = document.createElement("button");
+firstBtn.value = firstBtn.innerText;  // create the first answer button, set the value of the button to the text
+var secondBtn = document.createElement("button");
+secondBtn.value = secondBtn.innerText;
+var thirdBtn = document.createElement("button");
+thirdBtn.value = thirdBtn.innerText;
+var fourthBtn = document.createElement("button");
+fourthBtn.value = fourthBtn.innerText;
 
-// arrays
 var questionsArr = [
     {
         question: "QUESTION #1",
@@ -40,9 +52,55 @@ var questionsArr = [
     // will add more questions later maybe
 ];
 
+
 // functions
+var startQuiz = function() {
+    mainQuiz.innerHTML = "";
+    timer();
+    debugger;
+    startQuestions();
+}
+
+function startQuestions() {
+    // creating the questions 
+    if (presentQuestion < questionsArr.lenght) {
+        var showQuestion = document.createElement("ul");
+        showQuestion.className = "question";
+        showQuestion.innerText = questionsArr[presentQuestion].question;
+
+        // creating the answers 
+        var firstAnswer = document.createElement("li");
+        firstBtn.innerText = questionsArr[presentQuestion].answersArr[0];
+        firstBtn.value = questionsArr[presentQuestion].answersArr[0];
+        firstAnswer.appendChild(firstBtn);
+
+        var secondAnswer = document.createElement("li");
+        secondBtn.textContent = questionsArr[presentQuestion].answersArr[1];
+        secondAnswer.appendChild(secondBtn);
+
+        var thirdAnswer = document.createElement("li");
+        thirdBtn.textContent = questionsArr[presentQuestion].answersArr[2];
+        thirdAnswer.appendChild(thirdBtn);
+
+        var fourthAnswer = document.createElement("li");
+        fourthBtn.textContent = questionsArr[presentQuestion].answersArr[3];
+        fourthAnswer.appendChild(fourthBtn);
+
+        // appending the questions onto the page
+        mainQuiz.appendChild(showQuestion);
+        mainQuiz.appendChild(firstBtn);
+        mainQuiz.appendChild(secondBtn);
+        mainQuiz.appendChild(thirdBtn);
+        mainQuiz.appendChild(fourthBtn);
+    };
+};
+
+// function enterHighScore() {}
+
+
+startBtn.addEventListener("click", startQuiz);
+
 function timer() {
-    var timeLeft = 90;
 
     // use the set interval method to call a function to be executed every 1000 milliseconds (1 second)\
     var timeInterval = setInterval(function () {
@@ -56,20 +114,5 @@ function timer() {
             clearInterval(timeInterval);
             // enterHighScore();
         }
-    }, 1000);
-}
-
-function startQuiz() {
-    timer();
-    mainQuiz.innerHTML = "";
-}
-
-function startQuestions() {
-    var question = 0; 
-}
-
-// function enterHighScore() {}
-
-// event listeners (DOM)
-
-startBtn.onclick = startQuiz; 
+    }, 100);
+};
