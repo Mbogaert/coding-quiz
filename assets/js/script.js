@@ -34,7 +34,7 @@ function timer() {
     }, 1000);
 }
 
-function startQuestions() {
+function startQuiz() {
     timer();
     mainQuiz.innerHTML = "";
 }
@@ -44,4 +44,4 @@ function startQuestions() {
 
 // event listeners (DOM)
 
-startBtn.onclick = startQuestions; 
+startBtn.onclick = startQuiz; 
