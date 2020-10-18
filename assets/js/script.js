@@ -116,7 +116,10 @@ function startQuestions() {
         secondBtn.addEventListener("click", checkAnswer);
         thirdBtn.addEventListener("click", checkAnswer);
         fourthBtn.addEventListener("click", checkAnswer);
-    };
+    } 
+    else { 
+        gameOver();
+    }
 };
 
 function checkAnswer() {
@@ -133,6 +136,17 @@ function checkAnswer() {
         presentQuestion = presentQuestion + 1;
         startQuestions();
     };
+};
+
+function gameOver() {
+    // reset the page to have nothing on the main area
+    mainQuiz.innerHTML = "";
+    timeLeft = 0;
+
+    var endMessage = document.createElement("p");
+    endMessage.innerText = "You have reached the end of the quiz.";
+
+    mainQuiz.appendChild(endMessage);
 };
 
 // function enterHighScore() {}
