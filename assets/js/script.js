@@ -120,6 +120,10 @@ function startQuestions() {
 };
 
 function checkAnswer() {
+    // removes the text
+    mainQuiz.innerHTML = "";
+
+    // checks answer
     if (questionsArr[presentQuestion].correct === this.innerText) {
         presentQuestion = presentQuestion + 1; 
         startQuestions();
