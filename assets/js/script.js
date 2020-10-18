@@ -11,8 +11,9 @@
 // THEN I can save my initials and score
 
 // variables
-var timerEl = document.getElementById('timer');
-var startBtn = document.getElementById('start');
+var timerEl = document.getElementById("timer");
+var startBtn = document.getElementById("start");
+var mainQuiz = document.querySelector("main");
 
 // functions
 function timer() {
@@ -33,8 +34,14 @@ function timer() {
     }, 1000);
 }
 
+function startQuestions() {
+    timer();
+    mainQuiz.innerHTML = "";
+}
+
+
 // function enterHighScore() {}
 
 // event listeners (DOM)
 
-startBtn.onclick = timer; 
+startBtn.onclick = startQuestions; 
