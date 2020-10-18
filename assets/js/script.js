@@ -60,45 +60,6 @@ var startQuiz = function() {
     startQuestions();
 }
 
-function startQuestions() {
-    // creating the questions 
-    if (presentQuestion < questionsArr.length) {
-        var showQuestion = document.createElement("ul");
-        showQuestion.className = "question";
-        showQuestion.innerText = questionsArr[presentQuestion].question;
-
-        // creating the answers 
-        var firstAnswer = document.createElement("li");
-        firstBtn.innerText = questionsArr[presentQuestion].answersArr[0];
-        firstBtn.value = questionsArr[presentQuestion].answersArr[0];
-        firstAnswer.appendChild(firstBtn);
-
-        var secondAnswer = document.createElement("li");
-        secondBtn.textContent = questionsArr[presentQuestion].answersArr[1];
-        secondAnswer.appendChild(secondBtn);
-
-        var thirdAnswer = document.createElement("li");
-        thirdBtn.textContent = questionsArr[presentQuestion].answersArr[2];
-        thirdAnswer.appendChild(thirdBtn);
-
-        var fourthAnswer = document.createElement("li");
-        fourthBtn.textContent = questionsArr[presentQuestion].answersArr[3];
-        fourthAnswer.appendChild(fourthBtn);
-
-        // appending the questions onto the page
-        mainQuiz.appendChild(showQuestion);
-        mainQuiz.appendChild(firstBtn);
-        mainQuiz.appendChild(secondBtn);
-        mainQuiz.appendChild(thirdBtn);
-        mainQuiz.appendChild(fourthBtn);
-    };
-};
-
-// function enterHighScore() {}
-
-
-startBtn.addEventListener("click", startQuiz);
-
 function timer() {
 
     // use the set interval method to call a function to be executed every 1000 milliseconds (1 second)\
@@ -115,3 +76,62 @@ function timer() {
         }
     }, 1000);
 };
+
+function startQuestions() {
+    // creating the questions 
+    if (presentQuestion < questionsArr.length) {
+        var showQuestion = document.createElement("ol");
+        showQuestion.className = "question";
+        showQuestion.innerText = questionsArr[presentQuestion].question;
+
+        // creating the answers 
+        var firstAnswer = document.createElement("li");
+        firstBtn.innerText = questionsArr[presentQuestion].answersArr[0];
+        firstBtn.value = questionsArr[presentQuestion].answersArr[0];
+        firstAnswer.appendChild(firstBtn);
+
+        var secondAnswer = document.createElement("li");
+        secondBtn.innerText = questionsArr[presentQuestion].answersArr[1];
+        secondBtn.value = questionsArr[presentQuestion].answersArr[1];
+        secondAnswer.appendChild(secondBtn);
+
+        var thirdAnswer = document.createElement("li");
+        thirdBtn.innerText = questionsArr[presentQuestion].answersArr[2];
+        thirdBtn.value = questionsArr[presentQuestion].answersArr[2];
+        thirdAnswer.appendChild(thirdBtn);
+
+        var fourthAnswer = document.createElement("li");
+        fourthBtn.innerText = questionsArr[presentQuestion].answersArr[3];
+        fourthBtn.value = questionsArr[presentQuestion].answersArr[3];
+        fourthAnswer.appendChild(fourthBtn);
+
+        // appending the questions onto the page
+        mainQuiz.appendChild(showQuestion);
+        mainQuiz.appendChild(firstBtn);
+        mainQuiz.appendChild(secondBtn);
+        mainQuiz.appendChild(thirdBtn);
+        mainQuiz.appendChild(fourthBtn);
+
+        firstBtn.addEventListener("click", checkAnswer);
+        secondBtn.addEventListener("click", checkAnswer);
+        thirdBtn.addEventListener("click", checkAnswer);
+        fourthBtn.addEventListener("click", checkAnswer);
+    };
+};
+
+function checkAnswer() {
+    if (questionsArr[presentQuestion].correct === this.innerText) {
+        presentQuestion = presentQuestion + 1; 
+        startQuestions();
+    }
+    else {
+        timeLeft = timeLeft - 10;
+        presentQuestion = presentQuestion + 1;
+        startQuestions();
+    };
+};
+
+// function enterHighScore() {}
+
+
+startBtn.addEventListener("click", startQuiz);
