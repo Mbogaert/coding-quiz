@@ -57,13 +57,12 @@ var questionsArr = [
 var startQuiz = function() {
     mainQuiz.innerHTML = "";
     timer();
-    debugger;
     startQuestions();
 }
 
 function startQuestions() {
     // creating the questions 
-    if (presentQuestion < questionsArr.lenght) {
+    if (presentQuestion < questionsArr.length) {
         var showQuestion = document.createElement("ul");
         showQuestion.className = "question";
         showQuestion.innerText = questionsArr[presentQuestion].question;
@@ -114,5 +113,5 @@ function timer() {
             clearInterval(timeInterval);
             // enterHighScore();
         }
-    }, 100);
+    }, 1000);
 };

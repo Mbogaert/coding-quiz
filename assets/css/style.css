@@ -1,7 +1,8 @@
 
 
-header p {
+header div {
   float: right;
+  display: flex;
 }
 
 #highScore {
