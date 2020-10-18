@@ -64,9 +64,9 @@ function startQuiz() {
     mainQuiz.innerHTML = "";
 }
 
-// function startQuestions() {
-
-// }
+function startQuestions() {
+    var question = 0; 
+}
 
 // function enterHighScore() {}
 
