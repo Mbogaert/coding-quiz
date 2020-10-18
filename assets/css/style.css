@@ -1,5 +1,20 @@
- /* style for the coding quiz here */ 
 
- * {
-    box-sizing: border-box;
-  }; 
+
+header p {
+  float: right;
+}
+
+#highScore {
+  background-color: purple;
+  color: white;
+}
+
+main {
+  text-align: center;
+}
+
+
+#start {
+  background-color: purple;
+  color: white;
+}
