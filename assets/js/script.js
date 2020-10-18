@@ -15,6 +15,31 @@ var timerEl = document.getElementById("timer");
 var startBtn = document.getElementById("start");
 var mainQuiz = document.querySelector("main");
 
+// arrays
+var questionsArr = [
+    {
+        question: "QUESTION #1",
+        answersArr: ["A1", "A2", "A3", "A4"],
+        correct: "A1"
+    },
+    {
+        question: "QUESTION #2",
+        answersArr: ["B1", "B2", "B3", "B4"],
+        correct: "B2"
+    },
+    {
+        question: "QUESTION #3",
+        answersArr: ["C1", "C2", "C3", "C4"],
+        correct: "C3"
+    },
+    {
+        question: "QUESTION #4",
+        answersArr: ["D1", "D2", "D3", "D4"],
+        correct: "D4"
+    }
+    // will add more questions later maybe
+];
+
 // functions
 function timer() {
     var timeLeft = 90;
@@ -39,6 +64,9 @@ function startQuiz() {
     mainQuiz.innerHTML = "";
 }
 
+// function startQuestions() {
+
+// }
 
 // function enterHighScore() {}
 
