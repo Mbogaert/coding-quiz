@@ -172,16 +172,23 @@ function gameOver() {
     })
 };
 
+// checks to make sure the array exists and if not creates one
+var existingScores = JSON.parse(localStorage.getItem("scores"))
+if (existingScores === null) {
+    existingScores = [];
+};
+
 function saveScoreInitials() {
     var initials = document.querySelector("#initials").value;
 
-    localStorage.setItem("score", JSON.stringify(score));
-    localStorage.setItem("initials", JSON.stringify(initials));
     console.log(initials, score);
+    var newScore = { initials: initials, score: score };
 
-    // function saveScore() {
-    //     localStorage.setItem("score", JSON.stringify(score));
-    // }
+    // updates the array 
+    existingScores.push(newScore);
+
+    // updates to local Storage (puts it back)
+    localStorage.setItem("scores", JSON.stringify(existingScores));
 }
 
 function viewScores() {
