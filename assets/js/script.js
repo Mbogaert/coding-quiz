@@ -11,40 +11,49 @@ var score = 0;
 // the answer choices as buttons
 var firstBtn = document.createElement("button");
 firstBtn.value = firstBtn.innerText;  // create the first answer button, set the value of the button to the text
+firstBtn.className = "styleBtn";
 var secondBtn = document.createElement("button");
 secondBtn.value = secondBtn.innerText;
+secondBtn.className = "styleBtn";
 var thirdBtn = document.createElement("button");
 thirdBtn.value = thirdBtn.innerText;
+thirdBtn.className = "styleBtn";
 var fourthBtn = document.createElement("button");
 fourthBtn.value = fourthBtn.innerText;
+fourthBtn.className = "styleBtn";
 var returnBtn = document.createElement("button");
 returnBtn.type = ("button");
 returnBtn.id = "return";
 returnBtn.innerText = "Return";
+returnBtn.className = "styleBtn";
 
 // arrays
 var questionsArr = [
     {
-        question: "QUESTION #1",
-        answersArr: ["A1", "A2", "A3", "A4"],
-        correct: "A1"
+        question: "What does HTML stand for",
+        answersArr: ["Hyper Trainer Marking Language", "Hyper Text Marketing Language", "Hyper Text Markup Language", "Hyper Text Markup Leveler"],
+        correct: "Hyper Text Markup Language"
     },
     {
-        question: "QUESTION #2",
-        answersArr: ["B1", "B2", "B3", "B4"],
-        correct: "B2"
+        question: "During program development, software requirements specify",
+        answersArr: ["How the program will accomplish the task", "What the task is that the program must perform", "How to divide the task into subtasks", "How to test the program when it is done"],
+        correct: "What the task is that the program must perform"
     },
     {
-        question: "QUESTION #3",
-        answersArr: ["C1", "C2", "C3", "C4"],
-        correct: "C3"
+        question: "Sal needs to execute a section of code ten times within a program. Compare the selection structures below and select which one meets the needs identified.",
+        answersArr: ["If-Else", "For", "While", "If"],
+        correct: "For"
     },
     {
-        question: "QUESTION #4",
-        answersArr: ["D1", "D2", "D3", "D4"],
-        correct: "D4"
+        question: "A loop that never ends is referred to as a(n)_________.",
+        answersArr: ["While loop", "Infinite loop", "Recursive loop", "Loopty Loop"],
+        correct: "Infinite loop"
+    },
+    {
+        question: "Which command will stop an infinite loop?",
+        answersArr: ["Alt - C", "Shift - C", "Esc", "Ctrl - C"],
+        correct: "Ctrl - C"
     }
-    // will add more questions later maybe
 ];
 
 
@@ -75,37 +84,33 @@ function timer() {
 function startQuestions() {
     // creating the questions 
     if (presentQuestion < questionsArr.length) {
-        var showQuestion = document.createElement("ol");
+        var showQuestion = document.createElement("h1");
         showQuestion.className = "question";
         showQuestion.innerText = questionsArr[presentQuestion].question;
 
         // creating the answers 
         var firstAnswer = document.createElement("li");
         firstBtn.innerText = questionsArr[presentQuestion].answersArr[0];
-        firstBtn.value = questionsArr[presentQuestion].answersArr[0];
         firstAnswer.appendChild(firstBtn);
 
         var secondAnswer = document.createElement("li");
-        secondBtn.innerText = questionsArr[presentQuestion].answersArr[1];
-        secondBtn.value = questionsArr[presentQuestion].answersArr[1];
+        secondBtn.innerText = questionsArr[presentQuestion].answersArr[1]; 
         secondAnswer.appendChild(secondBtn);
 
         var thirdAnswer = document.createElement("li");
         thirdBtn.innerText = questionsArr[presentQuestion].answersArr[2];
-        thirdBtn.value = questionsArr[presentQuestion].answersArr[2];
         thirdAnswer.appendChild(thirdBtn);
 
         var fourthAnswer = document.createElement("li");
         fourthBtn.innerText = questionsArr[presentQuestion].answersArr[3];
-        fourthBtn.value = questionsArr[presentQuestion].answersArr[3];
         fourthAnswer.appendChild(fourthBtn);
 
         // appending the questions onto the page
         mainQuiz.appendChild(showQuestion);
-        mainQuiz.appendChild(firstBtn);
-        mainQuiz.appendChild(secondBtn);
-        mainQuiz.appendChild(thirdBtn);
-        mainQuiz.appendChild(fourthBtn);
+        mainQuiz.appendChild(firstAnswer);
+        mainQuiz.appendChild(secondAnswer);
+        mainQuiz.appendChild(thirdAnswer);
+        mainQuiz.appendChild(fourthAnswer);
 
         firstBtn.addEventListener("click", checkAnswer);
         secondBtn.addEventListener("click", checkAnswer);
@@ -136,7 +141,6 @@ function checkAnswer() {
 
 function gameOver() {
     // reset the page to have nothing on the main area
-    timeLeft = 0;
     mainQuiz.innerHTML = "";
 
     var endMessage = document.createElement("p");
@@ -152,6 +156,7 @@ function gameOver() {
     enterScoreBtn.type = ("submit");
     enterScoreBtn.id = "enterScore";
     enterScoreBtn.innerText = "Submit Score";
+    enterScoreBtn.className = "styleBtn";
 
     mainQuiz.appendChild(endMessage);
     mainQuiz.appendChild(playerScore);
@@ -185,12 +190,13 @@ function saveScoreInitials() {
 
     // updates to local Storage (puts it back)
     localStorage.setItem("scores", JSON.stringify(existingScores));
-    location.reload();
+    viewScores();
 }
 
 function viewScores() {
-    timeLeft = 0;
     mainQuiz.innerHTML = "";
+    timeLeft = 0; 
+
 
     var highScoreList = document.createElement("ol");
     highScoreList.id = "scoreList";
@@ -209,6 +215,7 @@ function viewScores() {
     for (var i = 0; i < existingScores.length; i++) {
         var scoreItemEl = document.createElement("li");
         scoreItemEl.textContent = existingScores[i].initials, existingScores[i].score;
+        scoreItemEl.className = "scoreItemEl";
         highScoreList.appendChild(scoreItemEl);
     };
 

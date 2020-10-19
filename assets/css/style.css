@@ -5,17 +5,26 @@ header div {
   display: flex;
 }
 
-#highScore {
-  background-color: purple;
-  color: white;
+body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
 main {
   text-align: center;
 }
 
 
-#start {
+#start, #highScore {
   background-color: purple;
   color: white;
+  padding: 1%; 
+}
+
+.styleBtn {
+  background-color: purple;
+  color: white;
+  padding: 1%;
+}
+
+.scoreItemEl {
+  text-align: left; 
 }

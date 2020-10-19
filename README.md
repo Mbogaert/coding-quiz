@@ -12,7 +12,7 @@ A quiz to test your coding knowledge while learning
 TBA
 
 ## Screenshot
-![this is a placeholder description of the image](relatively link the image here)
+![The image displays a screenshot of the first page of the coding quiz](./assets/images/screenshot.png)
 
 ## Contributions
 Made with pride by Mathew Bogaert
