@@ -206,13 +206,15 @@ function viewScores() {
     // convert from stringified version to an array of the object
     existingScores = JSON.parse(existingScores);
 
+    console.log(existingScores);
+
     for (var i = 0; i < existingScores.length; i++) {
         var scoreItemEl = document.createElement("li");
+        scoreItemEl.textContent = existingScores[i].initials, existingScores[i].score;
         scoreItemEl.appendChild(highScoreList);
-    }
+    };
 
     mainQuiz.appendChild(highScoreList);
-    console.log(highScoreList);
 
     // mainQuiz.appendChild() // append the High Score List
     mainQuiz.appendChild(returnBtn);
