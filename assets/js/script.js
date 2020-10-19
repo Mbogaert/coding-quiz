@@ -188,15 +188,15 @@ function saveScoreInitials() {
 }
 
 function viewScores() {
+    debugger;
     timeLeft = 0;
     mainQuiz.innerHTML = "";
 
     var highScoreList = document.createElement("OL");
     highScoreList.id = "scoreList";
-    highScoreList.innerHTML = JSON.parse(localStorage.getItem("scores"));
 
     // get localStorage
-   // var highScoreList = localStorage.getItem("scores");
+    existingScores = localStorage.getItem("scores");
 
     if (existingScores === null) {
         existingScores = [];
@@ -204,6 +204,12 @@ function viewScores() {
     };
 
     // convert from stringified version to an array of the object
+    existingScores = JSON.parse(existingScores);
+
+    for (var i = 0; i < existingScores.length; i++) {
+        var scoreItemEl = document.createElement("li");
+        scoreItemEl.appendChild(highScoreList);
+    }
 
     mainQuiz.appendChild(highScoreList);
     console.log(highScoreList);
