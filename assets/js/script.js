@@ -185,14 +185,14 @@ function saveScoreInitials() {
 
     // updates to local Storage (puts it back)
     localStorage.setItem("scores", JSON.stringify(existingScores));
+    location.reload();
 }
 
 function viewScores() {
-    debugger;
     timeLeft = 0;
     mainQuiz.innerHTML = "";
 
-    var highScoreList = document.createElement("OL");
+    var highScoreList = document.createElement("ol");
     highScoreList.id = "scoreList";
 
     // get localStorage
@@ -206,12 +206,10 @@ function viewScores() {
     // convert from stringified version to an array of the object
     existingScores = JSON.parse(existingScores);
 
-    console.log(existingScores);
-
     for (var i = 0; i < existingScores.length; i++) {
         var scoreItemEl = document.createElement("li");
         scoreItemEl.textContent = existingScores[i].initials, existingScores[i].score;
-        scoreItemEl.appendChild(highScoreList);
+        highScoreList.appendChild(scoreItemEl);
     };
 
     mainQuiz.appendChild(highScoreList);
