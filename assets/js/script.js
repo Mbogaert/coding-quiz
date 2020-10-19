@@ -1,8 +1,5 @@
 "use strict";
 
-// WHEN the game is over
-// THEN I can save my initials and score
-
 // variables
 var timerEl = document.getElementById("timer");
 var startBtn = document.getElementById("start");
@@ -181,7 +178,6 @@ if (existingScores === null) {
 function saveScoreInitials() {
     var initials = document.querySelector("#initials").value;
 
-    console.log(initials, score);
     var newScore = { initials: initials, score: score };
 
     // updates the array 
@@ -195,7 +191,24 @@ function viewScores() {
     timeLeft = 0;
     mainQuiz.innerHTML = "";
 
+    var highScoreList = document.createElement("OL");
+    highScoreList.id = "scoreList";
+    highScoreList.innerHTML = JSON.parse(localStorage.getItem("scores"));
 
+    // get localStorage
+   // var highScoreList = localStorage.getItem("scores");
+
+    if (existingScores === null) {
+        existingScores = [];
+        return false;
+    };
+
+    // convert from stringified version to an array of the object
+
+    mainQuiz.appendChild(highScoreList);
+    console.log(highScoreList);
+
+    // mainQuiz.appendChild() // append the High Score List
     mainQuiz.appendChild(returnBtn);
 
     returnBtn.addEventListener("click", function (event) {
