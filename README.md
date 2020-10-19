@@ -9,7 +9,7 @@ A quiz to test your coding knowledge while learning
 * JS
 
 ## Website
-TBA
+https://mbogaert.github.io/quiz/ 
 
 ## Screenshot
 ![The image displays a screenshot of the first page of the coding quiz](./assets/images/screenshot.png)
